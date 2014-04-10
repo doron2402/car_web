@@ -1,0 +1,38 @@
+{
+  "name": "car-web",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "3.x.x",
+    "connect-flash": "0.1.x",
+    "ejs": ">= 0.0.0",
+    "ejs-locals": "~1.0.2",
+    "passport": ">= 0.0.0",
+    "passport-local": ">= 0.0.0",
+    "mongodb": ">= 0.0.0",
+    "mongoose": ">= 0.0.0",
+    "bcrypt": ">= 0.0.0"
+  },
+  "description": "car web",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doron2402/car_web.git"
+  },
+  "keywords": [
+    "node.js",
+    "worker",
+    "express",
+    "passport",
+    "authentication"
+  ],
+  "author": "Doron Segal",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/doron2402/car_web/issues"
+  }
+}
