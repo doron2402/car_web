@@ -1,6 +1,8 @@
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var config = require('../settings/config.json');
+var bcrypt = require('bcrypt');
+var SALT_WORK_FACTOR = 10;
 
 if (process.env.ENV) {
   config = config[process.env.ENV];
@@ -24,8 +26,23 @@ var userSchema = mongoose.Schema({
   password: { type: String, required: true}
 });
 
-// Seed a user
+userSchema.pre('save', function(next) {
+  var user = this;
 
+  if(!user.isModified('password')) return next();
+
+  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+    if(err) return next(err);
+
+    bcrypt.hash(user.password, salt, function(err, hash) {
+      if(err) return next(err);
+      user.password = hash;
+      next();
+    });
+  });
+});
+
+// Seed a user
 var User = mongoose.model('User', userSchema);
 var users_list = [
 { username: 'doron', email: 'doron@doron.com', password: 'doron' },

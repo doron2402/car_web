@@ -7,7 +7,8 @@ var express = require('express')
   , SALT_WORK_FACTOR = 10
   , routes = require('./routes');
 
-  
+console.log(routes);
+
 mongoose.connect('localhost', 'test');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -85,7 +86,7 @@ passport.deserializeUser(function(email, done) {
 //   with a user object.  In the real world, this would query a database;
 //   however, in this example we are using a baked-in set of users.
 passport.use(new LocalStrategy(function(username, password, done) {
-  
+
   User.findOne({ username: username }, function(err, user) {
     if (err) { return done(err); }
     if (!user) { return done(null, false, { message: 'Unknown user ' + username, user: ''}); }
@@ -144,6 +145,8 @@ app.get('/profile', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user });
 });
 
+app.get('/dashboard', ensureAuthenticated, routes.DashboardRoute.getMainDashboard);
+
 app.get('/login', function(req, res){
   res.render('pages/login', { user: req.user, message: req.session.messages });
 });
@@ -157,15 +160,15 @@ app.get('/login', function(req, res){
 //   which, in this example, will redirect the user to the home page.
 //
 //   curl -v -d "username=bob&password=secret" http://127.0.0.1:3000/login
-//   
+//
 /***** This version has a problem with flash messages
-app.post('/login', 
+app.post('/login',
   passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),
   function(req, res) {
     res.redirect('/');
   });
 */
-  
+
 // POST /login
 //   This is an alternative implementation that uses a custom callback to
 //   acheive the same functionality.

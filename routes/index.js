@@ -1,1 +1,2 @@
-module.exports = require('./site');
+exports.DashboardRoute = require('./dashboard');
+exports.SiteRoute = require('./site');
