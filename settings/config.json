@@ -1,0 +1,17 @@
+{
+  "staging": {
+
+  },
+  "produciton": {
+
+  },
+  "dev": {
+    "mongodb": {
+      "host": "localhost",
+      "port": "27017",
+      "db": "test",
+      "user": "",
+      "password": ""
+    }
+  }
+}
