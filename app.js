@@ -13,6 +13,7 @@ if (process.env.ENV) {
   config = config.dev;
 }
 
+config.port = process.env.PORT || 5000;
 
 
 // Passport session setup.
@@ -150,8 +151,8 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen(3000, function() {
-  console.log('Express server listening on port 3000');
+app.listen(config.port, function() {
+  console.log('Express server listening on port '+ config.port);
 });
 
 
