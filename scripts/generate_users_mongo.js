@@ -9,7 +9,7 @@ if (process.env.ENV) {
 console.log('Generate users...');
 
 
-var User = = mongodbObj.userModel;
+var User = mongodbObj.userModel;
 
 var users_list = [
 { username: 'doron', email: 'doron@doron.com', password: 'doron' },
