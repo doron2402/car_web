@@ -1,15 +1,20 @@
-var express = require('express')
-  , passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy
-  , mongodb = require('mongodb')
-  , mongoose = require('mongoose')
-  , bcrypt = require('bcrypt')
-  , SALT_WORK_FACTOR = 10
-  , routes = require('./routes');
+var express = require('express');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var mongodb = require('mongodb');
+var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
+var SALT_WORK_FACTOR = 10;
+var routes = require('./routes');
+var config = require('../settings/config.json');
 
-console.log(routes);
+if (process.env.ENV) {
+  config = config[process.env.ENV];
+} else {
+  config = config.dev;
+}
 
-mongoose.connect('localhost', 'test');
+mongoose.connect(config.mongodb.host, config.mongodb.db);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback() {
