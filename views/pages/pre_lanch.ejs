@@ -1,0 +1,56 @@
+    <% layout('../layouts/pre_lanch_layout') -%>
+    <!-- START HEADER -->
+    <section id="header">
+        <div class="container">
+            <header>
+                <!-- HEADLINE -->
+                <h1 data-animated="GoIn"><b>Tracky</b> is coming soon...</h1>
+                <h3 data-animated="GoIn">A new way to track your vehicle</h3>
+            </header>
+            <!-- START TIMER -->
+            <div id="timer" data-animated="FadeIn">
+                <p id="message"></p>
+                <div id="days" class="timer_box"></div>
+                <div id="hours" class="timer_box"></div>
+                <div id="minutes" class="timer_box"></div>
+                <div id="seconds" class="timer_box"></div>
+            </div>
+            <!-- END TIMER -->
+            <div class="col-lg-4 col-lg-offset-4 mt centered" id="let-me-know-form">
+            	<h4>LET ME KNOW WHEN YOU LAUNCH</h4>
+      				<form class="form-inline" role="form">
+                <div class="form-group" id="err-msg-valid-email" style="display:none;">
+                  <h4>Please Enter a Valid email address</h4>
+                </div>
+      				  <div class="form-group">
+      				    <label class="sr-only" for="exampleInputEmail2">Email address</label>
+      				    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+      				  </div>
+      				  <button type="submit" class="btn btn-info">Submit</button>
+      				</form>            
+      			</div>
+            
+        </div>
+        <!-- LAYER OVER THE SLIDER TO MAKE THE WHITE TEXTE READABLE -->
+        <div id="layer"></div>
+        <!-- END LAYER -->
+        <!-- START SLIDER -->
+        <div id="slider" class="rev_slider">
+            <ul>
+              <li data-transition="slideleft" data-slotamount="1" data-thumb="/images/soon/slider/1.jpg">
+                <img src="/images/soon/slider/1.jpg">
+              </li>
+              <li data-transition="slideleft" data-slotamount="1" data-thumb="/images/soon/slider/2.jpg">
+                <img src="/images/soon/slider/2.jpg">
+              </li>
+              <li data-transition="slideleft" data-slotamount="1" data-thumb="/images/soon/slider/3.jpg">
+                <img src="/images/soon/slider/3.jpg">
+              </li>
+              <li data-transition="slideleft" data-slotamount="1" data-thumb="/images/soon/slider/4.jpg">
+                <img src="/images/soon/slider/4.jpg">
+              </li>
+            </ul>
+        </div>
+        <!-- END SLIDER -->
+    </section>
+    <!-- END HEADER -->

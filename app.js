@@ -1,66 +1,19 @@
-var express = require('express')
-  , passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy
-  , mongodb = require('mongodb')
-  , mongoose = require('mongoose')
-  , bcrypt = require('bcrypt')
-  , SALT_WORK_FACTOR = 10
-  , routes = require('./routes');
+var express = require('express');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var routes = require('./routes');
+var path = require('path');
+var mongodbObj = require('./lib/mongodb');
+var config = require('./settings/config.json');
+var User = mongodbObj.userModel;
 
-console.log(routes);
+if (process.env.ENV) {
+  config = config[process.env.ENV];
+} else {
+  config = config.dev;
+}
 
-mongoose.connect('localhost', 'test');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback() {
-  console.log('Connected to DB');
-});
 
-// User Schema
-var userSchema = mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true}
-});
-
-// Bcrypt middleware
-userSchema.pre('save', function(next) {
-	var user = this;
-
-	if(!user.isModified('password')) return next();
-
-	bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-		if(err) return next(err);
-
-		bcrypt.hash(user.password, salt, function(err, hash) {
-			if(err) return next(err);
-			user.password = hash;
-			next();
-		});
-	});
-});
-
-// Password verification
-userSchema.methods.comparePassword = function(candidatePassword, cb) {
-	bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-		if(err) return cb(err);
-		cb(null, isMatch);
-	});
-};
-
-// Seed a user
-
-var User = mongoose.model('User', userSchema);
-/*
-var usr = new User({ username: 'bob', email: 'bob@example.com', password: 'secret' });
-usr.save(function(err) {
-  if(err) {
-    console.log(err);
-  } else {
-    console.log('user: ' + usr.username + " saved.");
-  }
-});
-*/
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -79,7 +32,6 @@ passport.deserializeUser(function(email, done) {
   });
 });
 
-
 // Use the LocalStrategy within Passport.
 //   Strategies in passport require a `verify` function, which accept
 //   credentials (in this case, a username and password), and invoke a callback
@@ -88,6 +40,7 @@ passport.deserializeUser(function(email, done) {
 passport.use(new LocalStrategy(function(username, password, done) {
 
   User.findOne({ username: username }, function(err, user) {
+    console.log(user);
     if (err) { return done(err); }
     if (!user) { return done(null, false, { message: 'Unknown user ' + username, user: ''}); }
     user.comparePassword(password, function(err, isMatch) {
@@ -106,6 +59,7 @@ var app = express();
 
 // configure Express
 app.configure(function() {
+  app.use(express.static(path.join(__dirname, 'public')));
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.engine('ejs', require('ejs-locals'));
@@ -131,12 +85,11 @@ app.configure(function() {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
-  app.use(express.static(__dirname + '/../../public'));
 });
 
 
 app.get('/', function(req, res){
-  res.render('index', { user: req.user });
+  res.render('pages/pre_lanch', { title: 'Tracky - Coming Soon', user: req.user });
 });
 
 app.get('/home', routes.SiteRoute.getHomePage);
@@ -145,10 +98,15 @@ app.get('/profile', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user });
 });
 
+app.post('/signup/soon', routes.SiteRoute.signupForEarlyLanch);
+
 app.get('/dashboard', ensureAuthenticated, routes.DashboardRoute.getMainDashboard);
 
+//Dashboard routes:
+//app.get('/users/info', ensureAuthenticated, routes.DashboardRoute.getUserInfo);
+
 app.get('/login', function(req, res){
-  res.render('pages/login', { user: req.user, message: req.session.messages });
+  res.render('pages/login', { title: 'Tracky - login', user: req.user, message: req.session.messages });
 });
 
 
