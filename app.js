@@ -136,7 +136,7 @@ app.post('/login', function(req, res, next) {
     if (err) { return next(err) }
     if (!user) {
       req.session.messages =  [info.message];
-      return res.redirect('/login')
+      return res.redirect('/home')
     }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
