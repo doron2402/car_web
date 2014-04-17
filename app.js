@@ -111,6 +111,9 @@ app.get('/login', function(req, res){
 });
 
 
+//Dashboard Pages
+app.get('/dashboard/security',ensureAuthenticated, routes.DashboardRoute.getSecurityDashboard);
+
 
 // POST /login
 //   Use passport.authenticate() as route middleware to authenticate the

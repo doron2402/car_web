@@ -1,3 +1,10 @@
 <% layout('../layouts/layout') -%>
 
 <h2>DashBoard</h2>
+<% if (active !== 'undefined') { %>
+<script>
+    $(document).ready(function() {
+      setSideNav('<%= active.side_nav %>');
+    });
+</script>
+<% } %>
