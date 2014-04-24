@@ -17,12 +17,29 @@
               <p class="security-switch">Your security is on.</p>
               <div class="security-mini-dashboard start-engine">
                 <p>min Dashnoard </p>
+                <div class="row">
+                  <div class="col-md-3">
+                      <div class="input-append date" id="dpYears" data-date="12-02-2012" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                        <input class="span2" size="16" type="text" value="12-02-2012" readonly>
+                        <span class="add-on"><i class="fa fa-calendar"></i></span>
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="checkbox">
+                      </span>
+                      <input type="text" class="form-control">
+                    </div><!-- /input-group -->
+                  </div>
+                </div><!-- /.row -->
               </div>
 			      </div><!-- btn-group -->
           </div>
         </div><!-- /.row -->
-<script>
+<script type="text/javascript">
     $(document).ready(function() {
+      $('#dpYears').datepicker();//date picker
       $("[name='my-checkbox']").bootstrapSwitch();
       $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
         console.log(this); // DOM element
