@@ -15,6 +15,9 @@
             <div class="btn-group">
               <input type="checkbox" name="my-checkbox" checked>
               <p class="security-switch">Your security is on.</p>
+              <div class="security-mini-dashboard start-engine">
+                <p>min Dashnoard </p>
+              </div>
 			      </div><!-- btn-group -->
           </div>
         </div><!-- /.row -->
@@ -26,8 +29,10 @@
         console.log(event); // jQuery event
         console.log(state); // true | false
         if (state) {
+          $('.start-engine').fadeIn('slow');
           $('p.security-switch').html('Your security is on.');
         }else {
+          $('.start-engine').fadeOut('slow');
           $('p.security-switch').html('Your security is off.');
         }
       });
