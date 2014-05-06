@@ -103,6 +103,7 @@ app.post('/signup/soon', routes.SiteRoute.signupForEarlyLanch);
 
 app.get('/dashboard', ensureAuthenticated, routes.DashboardRoute.getMainDashboard);
 
+
 //Dashboard routes:
 //app.get('/users/info', ensureAuthenticated, routes.DashboardRoute.getUserInfo);
 
@@ -113,6 +114,11 @@ app.get('/login', function(req, res){
 
 //Dashboard Pages
 app.get('/dashboard/security',ensureAuthenticated, routes.DashboardRoute.getSecurityDashboard);
+app.get('/dashboard/routes',ensureAuthenticated, routes.DashboardRoute.getRoutesPage);
+app.get('/dashboard/notifications',ensureAuthenticated, routes.DashboardRoute.getNotificationPage);
+app.get('/dashboard/bugs',ensureAuthenticated, routes.DashboardRoute.getBugsPage);
+app.get('/dashboard/users',ensureAuthenticated, routes.DashboardRoute.getUsersPage);
+app.get('/dashboard/settings',ensureAuthenticated, routes.DashboardRoute.getSettingPage);
 
 
 // POST /login

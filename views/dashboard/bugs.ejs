@@ -1,6 +1,6 @@
 <% layout('../layouts/layout') -%>
 
-<h2>Security</h2>
+<h2>Bugs</h2>
 
         <div class="row">
           <div class="col-lg-12">
@@ -34,7 +34,7 @@
                   </div>
                 </div><!-- /.row -->
               </div>
-            </div><!-- btn-group -->
+			      </div><!-- btn-group -->
           </div>
         </div><!-- /.row -->
 <script type="text/javascript">
@@ -53,8 +53,8 @@
           $('p.security-switch').html('Your security is off.');
         }
       });
-        <% if (active !== 'undefined') { %>
-        setSideNav('<%= active.side_nav %>');
-        <% } %>
+      	<% if (active !== 'undefined') { %>
+      	setSideNav('<%= active.side_nav %>');
+      	<% } %>
     });
 </script>

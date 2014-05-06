@@ -1,6 +1,6 @@
 <% layout('../layouts/layout') -%>
 
-<h2>Security</h2>
+<h2>Users</h2>
 
         <div class="row">
           <div class="col-lg-12">
@@ -34,27 +34,6 @@
                   </div>
                 </div><!-- /.row -->
               </div>
-            </div><!-- btn-group -->
+			      </div><!-- btn-group -->
           </div>
         </div><!-- /.row -->
-<script type="text/javascript">
-    $(document).ready(function() {
-      $('#dpYears').datepicker();//date picker
-      $("[name='my-checkbox']").bootstrapSwitch();
-      $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
-        console.log(this); // DOM element
-        console.log(event); // jQuery event
-        console.log(state); // true | false
-        if (state) {
-          $('.start-engine').fadeIn('slow');
-          $('p.security-switch').html('Your security is on.');
-        }else {
-          $('.start-engine').fadeOut('slow');
-          $('p.security-switch').html('Your security is off.');
-        }
-      });
-        <% if (active !== 'undefined') { %>
-        setSideNav('<%= active.side_nav %>');
-        <% } %>
-    });
-</script>
