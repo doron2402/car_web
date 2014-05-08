@@ -120,7 +120,10 @@ app.get('/dashboard/bugs',ensureAuthenticated, routes.DashboardRoute.getBugsPage
 app.get('/dashboard/users',ensureAuthenticated, routes.DashboardRoute.getUsersPage);
 app.get('/dashboard/settings',ensureAuthenticated, routes.DashboardRoute.getSettingPage);
 
-
+app.get('/cars', ensureAuthenticated, routes.CarsRoute.getAllCars);
+app.get('/cars/:car_id', ensureAuthenticated, routes.CarsRoute.getCar);
+app.get('/cars/:car_id/routes/:route_id', ensureAuthenticated, routes.CarsRoute.getRoute);
+app.get('/cars/:car_id/routes', ensureAuthenticated, routes.CarsRoute.getAllRoute);
 // POST /login
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  If authentication fails, the user will be redirected back to the
