@@ -120,6 +120,9 @@ app.get('/dashboard/bugs',ensureAuthenticated, routes.DashboardRoute.getBugsPage
 app.get('/dashboard/users',ensureAuthenticated, routes.DashboardRoute.getUsersPage);
 app.get('/dashboard/settings',ensureAuthenticated, routes.DashboardRoute.getSettingPage);
 
+app.get('/dashboard/map',ensureAuthenticated, routes.DashboardRoute.getMapPage);
+app.get('/dashboard/chart1',ensureAuthenticated, routes.DashboardRoute.getChart1Page);
+
 
 // POST /login
 //   Use passport.authenticate() as route middleware to authenticate the

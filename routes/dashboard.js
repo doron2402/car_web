@@ -29,4 +29,12 @@ DashboardRoute.getSettingPage = function(req, res) {
 	res.render('dashboard/settings', {title: 'Trackey - Settings ' + req.user.username, user: req.user, active: { side_nav: 'side-nav-settings' }});
 };
 
+DashboardRoute.getMapPage = function(req, res) {
+	res.render('dashboard/map', {title: 'Trackey - Map ' + req.user.username, user: req.user, active: { side_nav: 'side-nav-map' }});
+};
+
+DashboardRoute.getChart1Page = function(req, res) {
+	res.render('dashboard/chart1', {title: 'Trackey - Chart1 ' + req.user.username, user: req.user, active: { side_nav: 'side-nav-chart1' }});
+};
+
 module.exports = DashboardRoute;
